@@ -5,8 +5,8 @@ const router = express.Router();
 const usersRoutes = require('./users')
 router.use('/users',usersRoutes);
 //OMDB
-const omdbRoutes = require('./omdb')
-router.use('/omdb',omdbRoutes);
+const themoviedb = require('./movies')
+router.use('/movies',themoviedb);
  
 
 function authenticateToken(req,res,next){
