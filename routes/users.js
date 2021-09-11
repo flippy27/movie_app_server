@@ -8,7 +8,7 @@ const conn = require('../database');
 router.get('/', async(req, res) => {
     conn.query(`SELECT * FROM user `, (err, result) => {
         if (err) {
-            console.log(err);
+            console.error(err);
         }
         res.send(result);
     });
@@ -48,12 +48,13 @@ router.post('/login', async(req, res) => {
         }
         try{
            if(await bcrypt.compare(req.body.password, user.user_password)){
-               
+               console.log('user',user);
                let jwtData = {
                    name:user.user_name,
                    email:user.user_email,
-                   user_id:user.id,
+                   user_id:user.user_id,
                }
+               console.log('data usuario',jwtData);
                const accessToken = jwt.sign(jwtData, process.env.ACCESS_TOKEN_SECRET)
                res.json({status:'Success',token:accessToken})
            }else{

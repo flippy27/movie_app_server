@@ -4,9 +4,13 @@ const router = express.Router();
 //USER
 const usersRoutes = require('./users')
 router.use('/users',usersRoutes);
+const users_dataRoutes = require('./user-data')
+router.use('/user-data',users_dataRoutes);
 //OMDB
-const themoviedb = require('./movies')
-router.use('/movies',themoviedb);
+const movies = require('./movies')
+router.use('/movies',movies);
+const series = require('./series')
+router.use('/series',series);
  
 
 function authenticateToken(req,res,next){
